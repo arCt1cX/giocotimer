@@ -20,12 +20,17 @@
     --bronze-color: #CD6133;
 }
 
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
     background-color: #000000;
     color: var(--text-color);
     min-height: 100vh;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     touch-action: manipulation;
 }
 
@@ -33,10 +38,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     width: 100%;
     padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .screen {
@@ -50,8 +57,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 30px;
+    padding-bottom: 30px;
 }
 
 /* Start Menu Styles */
@@ -163,7 +171,13 @@ h1 {
     width: 100%;
     height: 100%;
     max-width: 100%;
-    max-height: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
 }
 
 .category-container {
@@ -171,7 +185,9 @@ h1 {
     padding: 15px;
     background-color: #222222;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .category-container h2 {
@@ -622,5 +638,104 @@ h1 {
     .game-instructions li {
         font-size: 0.9rem;
         margin-bottom: 6px;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-height: 700px) {
+    html, body {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    #app {
+        justify-content: flex-start;
+        height: auto;
+        padding: 15px;
+        padding-bottom: 30px;
+    }
+    
+    .screen.active {
+        padding-bottom: 30px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin: 15px 0;
+    }
+    
+    .game-instructions {
+        margin-bottom: 15px;
+    }
+    
+    .game-instructions p {
+        font-size: 1rem;
+    }
+    
+    .game-instructions li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .menu-option {
+        margin-bottom: 15px;
+    }
+    
+    .menu-option h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .option-buttons {
+        gap: 7px;
+    }
+    
+    .option-buttons button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .start-button {
+        padding: 12px 32px;
+        font-size: 1.1rem;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .time-display {
+        font-size: 2.5rem;
+    }
+    
+    .player-button {
+        font-size: 1.2rem;
+        height: 70px;
+    }
+    
+    .player-result {
+        font-size: 3.5rem;
+    }
+    
+    .player-result3p {
+        font-size: 3rem;
+    }
+    
+    .game-instructions {
+        padding: 10px 15px;
+    }
+    
+    .game-instructions p {
+        font-size: 1rem;
+    }
+    
+    .game-instructions li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .option-buttons button {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+        flex-grow: 1;
     }
 } 
