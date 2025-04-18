@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameScreen = document.getElementById('gameScreen');
     const startButton = document.getElementById('startButton');
     const resetButton = document.getElementById('resetButton');
-    const menuButton = document.getElementById('menuButton');
     const categoryDisplay = document.getElementById('categoryDisplay');
     const categoryText = document.getElementById('category');
     
@@ -162,15 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
         resetButton.classList.remove('hidden');
     }
     
-    function goToMainMenu() {
-        // Stop the game timer if running
-        stopTimer();
-        
-        // Switch screens
-        gameScreen.classList.remove('active');
-        startMenu.classList.add('active');
-    }
-    
     // Event Listeners
     
     // Mode Selection
@@ -229,11 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset Button
     resetButton.addEventListener('click', () => {
         initGame();
-    });
-    
-    // Menu Button
-    menuButton.addEventListener('click', () => {
-        goToMainMenu();
     });
     
     // Initialize
