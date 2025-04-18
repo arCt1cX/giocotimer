@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Start Menu -->
+        <div id="startMenu" class="screen active">
+            <h1>Gioco Timer</h1>
+            <div class="menu-option">
+                <h2>Game Mode</h2>
+                <div class="option-buttons">
+                    <button data-mode="timer" class="selected">Just Timer</button>
+                    <button data-mode="category">With Categories</button>
+                </div>
+            </div>
+            <div class="menu-option">
+                <h2>Initial Time</h2>
+                <div class="option-buttons">
+                    <button data-time="60" class="selected">1 Minute</button>
+                    <button data-time="120">2 Minutes</button>
+                    <button data-time="300">5 Minutes</button>
+                </div>
+            </div>
+            <button id="startButton" class="start-button">Start Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div id="categoryDisplay" class="category-container hidden">
+                <h2>Category:</h2>
+                <p id="category"></p>
+            </div>
+            
+            <div class="timer-container">
+                <div id="player1" class="player-section">
+                    <div class="time-display">
+                        <span id="time1">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <button id="button1" class="player-button">Press</button>
+                    </div>
+                    <div id="status1" class="status-display"></div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div id="player2" class="player-section rotated">
+                    <div class="time-display">
+                        <span id="time2">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <button id="button2" class="player-button">Press</button>
+                    </div>
+                    <div id="status2" class="status-display"></div>
+                </div>
+            </div>
+            
+            <button id="resetButton" class="reset-button hidden">Reset Game</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
