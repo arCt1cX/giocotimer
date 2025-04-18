@@ -140,7 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameState.isGameStarted || gameState.isGameOver) return;
         
         gameState.isGameStarted = true;
-        gameState.activePlayer = playerNumber;
+        
+        // Fix: Set the active player to the opponent of the player who started
+        gameState.activePlayer = playerNumber === 1 ? 2 : 1;
+        
         gameState.lastUpdateTime = Date.now();
         
         startTimer();
