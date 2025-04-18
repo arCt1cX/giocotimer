@@ -339,18 +339,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add to placement order (3rd place first, then 2nd)
         gameState3p.placementOrder.push(playerNumber);
         
-        // Disable the player's button
-        const playerButton = document.getElementById(`button${playerNumber}_3p`);
-        playerButton.classList.add('disabled');
+        // Get player's section element
+        const playerSection = document.getElementById(`player${playerNumber}_3p`);
         
-        // Show placement message
-        const placementElement = document.getElementById(`gameOverPlayer${playerNumber}_3p`);
+        // Add eliminated class to hide controls and show placement
+        playerSection.classList.add('eliminated');
+        
+        // Show placement display within the player section
+        const placementDisplay = document.getElementById(`placement${playerNumber}_3p`);
         
         if (gameState3p.eliminatedPlayers.length === 1) {
             // First player eliminated (3rd place)
-            placementElement.textContent = '3rd PLACE';
-            placementElement.classList.add('third-place');
-            placementElement.classList.remove('hidden');
+            placementDisplay.textContent = '3rd PLACE';
             
             // Switch active player to one of the remaining players
             const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
@@ -359,9 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } else if (gameState3p.eliminatedPlayers.length === 2) {
             // Second player eliminated (2nd place)
-            placementElement.textContent = '2nd PLACE';
-            placementElement.classList.add('second-place');
-            placementElement.classList.remove('hidden');
+            placementDisplay.textContent = '2nd PLACE';
             
             // Last player wins (1st place)
             const winner = [1, 2, 3].find(p => !gameState3p.eliminatedPlayers.includes(p));
@@ -374,14 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState3p.isGameOver = true;
         stopTimer();
         
-        // Add game over effect
-        gameScreen3p.classList.add('game-over');
+        // Get winner's section element
+        const winnerSection = document.getElementById(`player${winnerPlayer}_3p`);
         
-        // Show 1st place message for winner
-        const winnerElement = document.getElementById(`gameOverPlayer${winnerPlayer}_3p`);
-        winnerElement.textContent = '1st PLACE';
-        winnerElement.classList.add('first-place');
-        winnerElement.classList.remove('hidden');
+        // Add eliminated class to the winner too, to show their placement
+        winnerSection.classList.add('eliminated');
+        
+        // Show 1st place message
+        const winnerPlacementDisplay = document.getElementById(`placement${winnerPlayer}_3p`);
+        winnerPlacementDisplay.textContent = '1st PLACE';
         
         // Hide the menu button
         menuButton3p.style.display = 'none';
@@ -456,6 +455,16 @@ document.addEventListener('DOMContentLoaded', () => {
             status1_3p.textContent = '';
             status2_3p.textContent = '';
             status3_3p.textContent = '';
+            
+            // Reset eliminated classes and placemant messages
+            document.getElementById('player1_3p').classList.remove('eliminated');
+            document.getElementById('player2_3p').classList.remove('eliminated');
+            document.getElementById('player3_3p').classList.remove('eliminated');
+            
+            // Reset placement displays
+            document.getElementById('placement1_3p').textContent = '1st PLACE';
+            document.getElementById('placement2_3p').textContent = '2nd PLACE';
+            document.getElementById('placement3_3p').textContent = '3rd PLACE';
             
             // Reset game over messages
             gameOverPlayer1_3p.classList.add('hidden');
