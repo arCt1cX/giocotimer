@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const status1 = document.getElementById('status1');
     const status2 = document.getElementById('status2');
     
+    // Turn indicators
+    const indicator1 = document.getElementById('indicator1');
+    const indicator2 = document.getElementById('indicator2');
+    
     // Game over messages
     const gameOverPlayer1 = document.getElementById('gameOverPlayer1');
     const gameOverPlayer2 = document.getElementById('gameOverPlayer2');
@@ -66,6 +70,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTimeDisplay() {
         time1Element.textContent = formatTime(gameState.player1Time);
         time2Element.textContent = formatTime(gameState.player2Time);
+    }
+    
+    // Update turn indicators and button states
+    function updateTurnIndicators() {
+        // Reset all indicators and button classes
+        indicator1.classList.remove('visible');
+        indicator2.classList.remove('visible');
+        
+        player1Button.classList.remove('active-turn', 'inactive-turn', 'ready-turn');
+        player2Button.classList.remove('active-turn', 'inactive-turn', 'ready-turn');
+        
+        if (!gameState.isGameStarted) {
+            // Game hasn't started - both buttons are in "ready" state
+            player1Button.classList.add('ready-turn');
+            player2Button.classList.add('ready-turn');
+        } else if (!gameState.isGameOver) {
+            // Game is in progress
+            if (gameState.activePlayer === 1) {
+                // Player 1's turn - show active state
+                player1Button.classList.add('active-turn');
+                player2Button.classList.add('inactive-turn');
+                indicator1.classList.add('visible');
+            } else {
+                // Player 2's turn - show active state
+                player1Button.classList.add('inactive-turn');
+                player2Button.classList.add('active-turn');
+                indicator2.classList.add('visible');
+            }
+        }
     }
     
     // Game timer logic
@@ -118,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Update UI
         updateTimeDisplay();
+        updateTurnIndicators();
         
         // Reset status displays
         status1.textContent = '';
@@ -162,6 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         gameState.lastUpdateTime = Date.now();
         
+        // Update visual indicators
+        updateTurnIndicators();
+        
         startTimer();
     }
     
@@ -171,6 +208,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Add game over effect to darken everything
         gameScreen.classList.add('game-over');
+        
+        // Reset button states and indicators
+        player1Button.classList.remove('active-turn', 'inactive-turn', 'ready-turn');
+        player2Button.classList.remove('active-turn', 'inactive-turn', 'ready-turn');
+        indicator1.classList.remove('visible');
+        indicator2.classList.remove('visible');
         
         // Show appropriate game over messages
         if (winnerPlayer === 1) {
@@ -207,6 +250,18 @@ document.addEventListener('DOMContentLoaded', () => {
         resetButton.style.top = '50%';
         resetButton.style.left = '50%';
         resetButton.style.transform = 'translate(-50%, -50%)';
+    }
+    
+    // Switch active player
+    function switchActivePlayer() {
+        if (gameState.activePlayer === 1) {
+            gameState.activePlayer = 2;
+        } else {
+            gameState.activePlayer = 1;
+        }
+        
+        // Update visual indicators
+        updateTurnIndicators();
     }
     
     // Return to main menu
@@ -294,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
             startGame(1);
         } else if (gameState.activePlayer === 1) {
             // Switch to player 2
-            gameState.activePlayer = 2;
+            switchActivePlayer();
         }
     });
     
@@ -305,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
             startGame(2);
         } else if (gameState.activePlayer === 2) {
             // Switch to player 1
-            gameState.activePlayer = 1;
+            switchActivePlayer();
         }
     });
     

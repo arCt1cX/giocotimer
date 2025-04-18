@@ -9,6 +9,9 @@
     --purple-primary: #6C5CE7;
     --purple-secondary: #8975FF;
     --purple-dark: #5043AA;
+    --purple-inactive: #493C9F;
+    --active-green: #4CD137;
+    --inactive-gray: #444444;
     --text-color: #FFFFFF;
     --win-color: #4CD137;
     --lose-color: #E84118;
@@ -156,11 +159,13 @@ h1 {
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
+    transition: color 0.3s ease;
 }
 
 .button-container {
     width: 100%;
     text-align: center;
+    position: relative;
 }
 
 .player-button {
@@ -173,7 +178,7 @@ h1 {
     max-width: 300px;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 6px 0 var(--purple-dark);
 }
 
@@ -182,10 +187,62 @@ h1 {
     box-shadow: 0 0 0 var(--purple-dark);
 }
 
+/* Active player button - this player is losing time */
+.player-button.active-turn {
+    background-color: var(--active-green);
+    box-shadow: 0 6px 0 #2D9721;
+    animation: pulse 1.5s infinite;
+}
+
+.player-button.active-turn:active {
+    box-shadow: 0 0 0 #2D9721;
+}
+
+/* Inactive player button - waiting for their turn */
+.player-button.inactive-turn {
+    background-color: var(--inactive-gray);
+    box-shadow: 0 6px 0 #333333;
+    opacity: 0.8;
+}
+
+.player-button.inactive-turn:active {
+    box-shadow: 0 0 0 #333333;
+}
+
+/* Ready player button - game hasn't started yet */
+.player-button.ready-turn {
+    background-color: var(--purple-secondary);
+    box-shadow: 0 6px 0 var(--purple-dark);
+    animation: ready-pulse 2s infinite;
+}
+
+.player-button.ready-turn:active {
+    box-shadow: 0 0 0 var(--purple-dark);
+}
+
 .player-button.disabled {
     background-color: #555555;
     cursor: not-allowed;
     box-shadow: none;
+    opacity: 0.5;
+    animation: none;
+}
+
+/* Turn indicator */
+.turn-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--active-green);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.turn-indicator.visible {
+    opacity: 1;
 }
 
 .divider {
@@ -353,6 +410,34 @@ h1 {
 
 .hidden {
     display: none !important;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes ready-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 6px 0 var(--purple-dark);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 10px var(--purple-dark);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 6px 0 var(--purple-dark);
+    }
 }
 
 /* Media Queries for Responsive Design */
