@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const status1 = document.getElementById('status1');
     const status2 = document.getElementById('status2');
     
-    // Game over message
-    const gameOverMessage = document.getElementById('gameOverMessage');
+    // Game over messages
+    const gameOverPlayer1 = document.getElementById('gameOverPlayer1');
+    const gameOverPlayer2 = document.getElementById('gameOverPlayer2');
     
     // Menu button elements
     const menuButton = document.getElementById('menuButton');
@@ -122,9 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
         status1.textContent = '';
         status2.textContent = '';
         
-        // Reset game over message
-        gameOverMessage.classList.remove('player1-won', 'player2-won');
-        gameOverMessage.classList.add('hidden');
+        // Reset game over messages
+        gameOverPlayer1.classList.add('hidden');
+        gameOverPlayer1.classList.remove('loser');
+        gameOverPlayer2.classList.add('hidden');
+        gameOverPlayer2.classList.remove('loser');
+        gameOverPlayer1.textContent = 'YOU WON!';
+        gameOverPlayer2.textContent = 'YOU WON!';
         
         // Enable player buttons
         player1Button.classList.remove('disabled');
@@ -167,16 +172,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add game over effect to darken everything
         gameScreen.classList.add('game-over');
         
-        // Display game over message with the appropriate winner
-        gameOverMessage.classList.remove('hidden');
+        // Show appropriate game over messages
         if (winnerPlayer === 1) {
-            // Fix: The class should be applied in the opposite way to display correctly
-            gameOverMessage.classList.add('player2-won');
-            gameOverMessage.classList.remove('player1-won');
+            // Player 1 won
+            gameOverPlayer1.textContent = 'YOU WON!';
+            gameOverPlayer1.classList.remove('loser');
+            gameOverPlayer1.classList.remove('hidden');
+            
+            gameOverPlayer2.textContent = 'YOU LOST!';
+            gameOverPlayer2.classList.add('loser');
+            gameOverPlayer2.classList.remove('hidden');
         } else {
-            // Fix: The class should be applied in the opposite way to display correctly
-            gameOverMessage.classList.add('player1-won');
-            gameOverMessage.classList.remove('player2-won');
+            // Player 2 won
+            gameOverPlayer1.textContent = 'YOU LOST!';
+            gameOverPlayer1.classList.add('loser');
+            gameOverPlayer1.classList.remove('hidden');
+            
+            gameOverPlayer2.textContent = 'YOU WON!';
+            gameOverPlayer2.classList.remove('loser');
+            gameOverPlayer2.classList.remove('hidden');
         }
         
         // Disable player buttons
@@ -207,9 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove game over effect if present
         gameScreen.classList.remove('game-over');
         
-        // Hide game over message
-        gameOverMessage.classList.remove('player1-won', 'player2-won');
-        gameOverMessage.classList.add('hidden');
+        // Hide game over messages
+        gameOverPlayer1.classList.add('hidden');
+        gameOverPlayer2.classList.add('hidden');
         
         // Switch screens
         gameScreen.classList.remove('active');

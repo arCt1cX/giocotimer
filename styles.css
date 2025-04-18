@@ -256,55 +256,6 @@ h1 {
     transform: scale(0.95);
 }
 
-/* Game Over Overlay */
-.game-over-message {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 15;
-    padding: 50px 20px;
-}
-
-.winner-message, .loser-message {
-    font-size: 4rem;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: scale(0.8);
-}
-
-.winner-message {
-    color: var(--win-color);
-    text-shadow: 0 0 20px rgba(76, 209, 55, 0.5);
-}
-
-.loser-message {
-    color: var(--lose-color);
-    text-shadow: 0 0 20px rgba(232, 65, 24, 0.5);
-    transform: rotate(180deg) scale(0.8);
-}
-
-.game-over-message.player1-won .winner-message,
-.game-over-message.player2-won .loser-message {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.game-over-message.player1-won .loser-message,
-.game-over-message.player2-won .winner-message {
-    opacity: 1;
-    transform: rotate(180deg) scale(1);
-}
-
 /* Game Over State */
 .game-over .player-section, 
 .game-over .time-display, 
@@ -312,6 +263,38 @@ h1 {
 .game-over .category-container {
     opacity: 0.2;
     transition: opacity 0.5s ease;
+}
+
+/* Game Over Messages */
+.player-result {
+    position: absolute;
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--win-color);
+    text-shadow: 0 0 20px rgba(76, 209, 55, 0.6);
+    z-index: 15;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+#gameOverPlayer1 {
+    top: 0;
+}
+
+#gameOverPlayer2 {
+    bottom: 0;
+    top: auto;
+}
+
+.player-result.loser {
+    color: var(--lose-color);
+    text-shadow: 0 0 20px rgba(232, 65, 24, 0.6);
 }
 
 /* Confirmation Dialog */
@@ -382,8 +365,8 @@ h1 {
         font-size: 4rem;
     }
     
-    .winner-message, .loser-message {
-        font-size: 5rem;
+    .player-result {
+        font-size: 6rem;
     }
 }
 
@@ -396,7 +379,7 @@ h1 {
         font-size: 1.2rem;
     }
     
-    .winner-message, .loser-message {
-        font-size: 3rem;
+    .player-result {
+        font-size: 3.5rem;
     }
 } 
