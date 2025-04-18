@@ -165,25 +165,46 @@ document.addEventListener('DOMContentLoaded', () => {
             player2Button3p.classList.add('ready-turn');
             player3Button3p.classList.add('ready-turn');
         } else if (!gameState3p.isGameOver) {
-            // Game is in progress
+            // Game is in progress - In 3-player mode, the active player's timer is increasing
             if (gameState3p.activePlayer === 1) {
-                // Player 1's turn - show active state
-                player1Button3p.classList.add('active-turn');
-                player2Button3p.classList.add('inactive-turn');
-                player3Button3p.classList.add('inactive-turn');
-                indicator1_3p.classList.add('visible');
+                // Player 1's timer is increasing (button should look inactive actually)
+                player1Button3p.classList.add('inactive-turn');
+                
+                // Players 2 and 3 timers are decreasing (their buttons should look active)
+                if (!gameState3p.eliminatedPlayers.includes(2)) {
+                    player2Button3p.classList.add('active-turn');
+                    indicator2_3p.classList.add('visible');
+                }
+                if (!gameState3p.eliminatedPlayers.includes(3)) {
+                    player3Button3p.classList.add('active-turn');
+                    indicator3_3p.classList.add('visible');
+                }
             } else if (gameState3p.activePlayer === 2) {
-                // Player 2's turn - show active state
-                player1Button3p.classList.add('inactive-turn');
-                player2Button3p.classList.add('active-turn');
-                player3Button3p.classList.add('inactive-turn');
-                indicator2_3p.classList.add('visible');
-            } else {
-                // Player 3's turn - show active state
-                player1Button3p.classList.add('inactive-turn');
+                // Player 2's timer is increasing (button should look inactive)
                 player2Button3p.classList.add('inactive-turn');
-                player3Button3p.classList.add('active-turn');
-                indicator3_3p.classList.add('visible');
+                
+                // Players 1 and 3 timers are decreasing (their buttons should look active)
+                if (!gameState3p.eliminatedPlayers.includes(1)) {
+                    player1Button3p.classList.add('active-turn');
+                    indicator1_3p.classList.add('visible');
+                }
+                if (!gameState3p.eliminatedPlayers.includes(3)) {
+                    player3Button3p.classList.add('active-turn');
+                    indicator3_3p.classList.add('visible');
+                }
+            } else if (gameState3p.activePlayer === 3) {
+                // Player 3's timer is increasing (button should look inactive)
+                player3Button3p.classList.add('inactive-turn');
+                
+                // Players 1 and 2 timers are decreasing (their buttons should look active)
+                if (!gameState3p.eliminatedPlayers.includes(1)) {
+                    player1Button3p.classList.add('active-turn');
+                    indicator1_3p.classList.add('visible');
+                }
+                if (!gameState3p.eliminatedPlayers.includes(2)) {
+                    player2Button3p.classList.add('active-turn');
+                    indicator2_3p.classList.add('visible');
+                }
             }
         }
     }
@@ -232,13 +253,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (gameState3p.isGameOver) return;
                 
-                // Get all active players (not eliminated)
+                // In 3-player mode:
+                // - The active player's timer is INCREASING
+                // - The other players' timers are DECREASING
+                
                 const activePlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
                 
                 if (gameState3p.activePlayer === 1) {
-                    // Player 1 is active (gaining time), others are losing time
+                    // Player 1 is active (GAINING time)
                     gameState3p.player1Time = Math.min(gameSettings.initialTime * 2, gameState3p.player1Time + deltaTime);
                     
+                    // Players 2 and 3 are LOSING time
                     if (!gameState3p.eliminatedPlayers.includes(2)) {
                         gameState3p.player2Time = Math.max(0, gameState3p.player2Time - deltaTime);
                         // Check if Player 2 is eliminated
@@ -255,9 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 } else if (gameState3p.activePlayer === 2) {
-                    // Player 2 is active (gaining time), others are losing time
+                    // Player 2 is active (GAINING time)
                     gameState3p.player2Time = Math.min(gameSettings.initialTime * 2, gameState3p.player2Time + deltaTime);
                     
+                    // Players 1 and 3 are LOSING time
                     if (!gameState3p.eliminatedPlayers.includes(1)) {
                         gameState3p.player1Time = Math.max(0, gameState3p.player1Time - deltaTime);
                         // Check if Player 1 is eliminated
@@ -274,9 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 } else if (gameState3p.activePlayer === 3) {
-                    // Player 3 is active (gaining time), others are losing time
+                    // Player 3 is active (GAINING time)
                     gameState3p.player3Time = Math.min(gameSettings.initialTime * 2, gameState3p.player3Time + deltaTime);
                     
+                    // Players 1 and 2 are LOSING time
                     if (!gameState3p.eliminatedPlayers.includes(1)) {
                         gameState3p.player1Time = Math.max(0, gameState3p.player1Time - deltaTime);
                         // Check if Player 1 is eliminated
@@ -717,10 +744,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameState3p.isGameOver || gameState3p.eliminatedPlayers.includes(1)) return;
         
         if (!gameState3p.isGameStarted) {
+            // Start the game with player 1 as active (their timer will increase)
             startGame(1);
-        } else if (gameState3p.activePlayer === 1) {
-            // Switch to next player
-            switchActivePlayer(1);
+        } else if (gameState3p.activePlayer !== 1) {
+            // Only allow player 1 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState3p.activePlayer = 1;
+            updateTurnIndicators();
         }
     });
     
@@ -728,10 +758,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameState3p.isGameOver || gameState3p.eliminatedPlayers.includes(2)) return;
         
         if (!gameState3p.isGameStarted) {
+            // Start the game with player 2 as active (their timer will increase)
             startGame(2);
-        } else if (gameState3p.activePlayer === 2) {
-            // Switch to next player
-            switchActivePlayer(2);
+        } else if (gameState3p.activePlayer !== 2) {
+            // Only allow player 2 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState3p.activePlayer = 2;
+            updateTurnIndicators();
         }
     });
     
@@ -739,10 +772,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameState3p.isGameOver || gameState3p.eliminatedPlayers.includes(3)) return;
         
         if (!gameState3p.isGameStarted) {
+            // Start the game with player 3 as active (their timer will increase)
             startGame(3);
-        } else if (gameState3p.activePlayer === 3) {
-            // Switch to next player
-            switchActivePlayer(3);
+        } else if (gameState3p.activePlayer !== 3) {
+            // Only allow player 3 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState3p.activePlayer = 3;
+            updateTurnIndicators();
         }
     });
     

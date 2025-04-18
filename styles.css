@@ -89,7 +89,23 @@ h1 {
     font-weight: bold;
 }
 
-.game-instructions ol {
+.mode-instructions {
+    margin: 10px 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(108, 92, 231, 0.3);
+}
+
+.mode-instructions:last-of-type {
+    border-bottom: none;
+}
+
+.mode-instructions h3 {
+    font-size: 1.1rem;
+    color: var(--purple-secondary);
+    margin-bottom: 8px;
+}
+
+.game-instructions ul {
     padding-left: 25px;
 }
 
@@ -353,6 +369,11 @@ h1 {
     color: var(--active-green);
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+/* Custom turn indicators for 3-player mode */
+#indicator1_3p, #indicator2_3p, #indicator3_3p {
+    content: "PRESS NOW";
 }
 
 .turn-indicator.visible {
