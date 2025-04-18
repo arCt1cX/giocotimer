@@ -170,11 +170,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Display game over message with the appropriate winner
         gameOverMessage.classList.remove('hidden');
         if (winnerPlayer === 1) {
-            gameOverMessage.classList.add('player1-won');
-            gameOverMessage.classList.remove('player2-won');
-        } else {
+            // Fix: The class should be applied in the opposite way to display correctly
             gameOverMessage.classList.add('player2-won');
             gameOverMessage.classList.remove('player1-won');
+        } else {
+            // Fix: The class should be applied in the opposite way to display correctly
+            gameOverMessage.classList.add('player1-won');
+            gameOverMessage.classList.remove('player2-won');
         }
         
         // Disable player buttons
