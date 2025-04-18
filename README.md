@@ -27,6 +27,7 @@ A mobile-optimized verbal challenge game with a chess clock mechanic for two pla
    - The inactive player's timer counts up (gaining time)
    - Players switch by pressing their button when they complete their turn
    - Timers increase and decrease at the same rate
+   - A small menu button is available in the center to return to the main menu at any time
 
 4. **Game End**:
    - If a player's timer reaches 0, they lose and the game ends
