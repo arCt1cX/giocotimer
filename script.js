@@ -118,13 +118,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset status displays
         status1.textContent = '';
         status2.textContent = '';
+        status1.classList.remove('status-win', 'status-lose');
+        status2.classList.remove('status-win', 'status-lose');
         
         // Enable player buttons
         player1Button.classList.remove('disabled');
         player2Button.classList.remove('disabled');
         
-        // Hide reset button
+        // Show menu button, hide reset button
+        menuButton.style.display = 'block';
         resetButton.classList.add('hidden');
+        
+        // Remove game over effect
+        gameScreen.classList.remove('game-over');
         
         // Handle category display
         if (gameSettings.mode === 'category') {
@@ -153,21 +159,42 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.isGameOver = true;
         stopTimer();
         
-        // Update status displays
+        // Clear previous status classes
+        status1.classList.remove('status-win', 'status-lose');
+        status2.classList.remove('status-win', 'status-lose');
+        
+        // Update status displays with clear winner/loser text and classes
         if (winnerPlayer === 1) {
-            status1.textContent = 'You won';
-            status2.textContent = 'You lost';
+            status1.textContent = 'You won!';
+            status1.classList.add('status-win');
+            
+            status2.textContent = 'You lost!';
+            status2.classList.add('status-lose');
         } else {
-            status1.textContent = 'You lost';
-            status2.textContent = 'You won';
+            status1.textContent = 'You lost!';
+            status1.classList.add('status-lose');
+            
+            status2.textContent = 'You won!';
+            status2.classList.add('status-win');
         }
         
         // Disable player buttons
         player1Button.classList.add('disabled');
         player2Button.classList.add('disabled');
         
-        // Show reset button
+        // Hide menu button
+        menuButton.style.display = 'none';
+        
+        // Show reset button and position it in the divider
         resetButton.classList.remove('hidden');
+        // Position the reset button in the center of the divider (same as menu button)
+        resetButton.style.position = 'absolute';
+        resetButton.style.top = '50%';
+        resetButton.style.left = '50%';
+        resetButton.style.transform = 'translate(-50%, -50%)';
+        
+        // Add game over effect to darken everything except the status text
+        gameScreen.classList.add('game-over');
     }
     
     // Return to main menu
@@ -178,6 +205,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset game state and UI
         gameState.isGameStarted = false;
         gameState.isGameOver = false;
+        
+        // Remove game over effect if present
+        gameScreen.classList.remove('game-over');
+        
+        // Reset status classes
+        status1.classList.remove('status-win', 'status-lose');
+        status2.classList.remove('status-win', 'status-lose');
         
         // Switch screens
         gameScreen.classList.remove('active');
