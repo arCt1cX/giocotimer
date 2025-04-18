@@ -227,9 +227,10 @@ h1 {
     font-size: 2rem;
     font-weight: bold;
     color: var(--purple-secondary);
-    height: 2rem;
+    height: 2.5rem;
     transition: all 0.3s ease;
-    z-index: 5;
+    z-index: 15;
+    position: relative;
 }
 
 .reset-button {
@@ -242,7 +243,7 @@ h1 {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease;
-    z-index: 10;
+    z-index: 20;
     box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
 }
 
@@ -255,46 +256,62 @@ h1 {
     transform: scale(0.95);
 }
 
-/* Game Over State */
-.game-over {
-    position: relative;
-}
-
-.game-over::before {
-    content: '';
+/* Game Over Overlay */
+.game-over-message {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+    padding: 50px 20px;
 }
 
+.winner-message, .loser-message {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: scale(0.8);
+}
+
+.winner-message {
+    color: var(--win-color);
+    text-shadow: 0 0 20px rgba(76, 209, 55, 0.5);
+}
+
+.loser-message {
+    color: var(--lose-color);
+    text-shadow: 0 0 20px rgba(232, 65, 24, 0.5);
+    transform: rotate(180deg) scale(0.8);
+}
+
+.game-over-message.player1-won .winner-message,
+.game-over-message.player2-won .loser-message {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.game-over-message.player1-won .loser-message,
+.game-over-message.player2-won .winner-message {
+    opacity: 1;
+    transform: rotate(180deg) scale(1);
+}
+
+/* Game Over State */
 .game-over .player-section, 
 .game-over .time-display, 
 .game-over .player-button,
 .game-over .category-container {
     opacity: 0.2;
     transition: opacity 0.5s ease;
-}
-
-.game-over .status-display {
-    font-size: 3.5rem;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 10;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-.status-win {
-    color: var(--win-color) !important;
-    text-shadow: 0 0 10px rgba(76, 209, 55, 0.5) !important;
-}
-
-.status-lose {
-    color: var(--lose-color) !important;
-    text-shadow: 0 0 10px rgba(232, 65, 24, 0.5) !important;
 }
 
 /* Confirmation Dialog */
@@ -352,7 +369,7 @@ h1 {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Media Queries for Responsive Design */
@@ -365,8 +382,8 @@ h1 {
         font-size: 4rem;
     }
     
-    .game-over .status-display {
-        font-size: 4.5rem;
+    .winner-message, .loser-message {
+        font-size: 5rem;
     }
 }
 
@@ -379,7 +396,7 @@ h1 {
         font-size: 1.2rem;
     }
     
-    .game-over .status-display {
+    .winner-message, .loser-message {
         font-size: 3rem;
     }
 } 

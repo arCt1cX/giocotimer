@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const status1 = document.getElementById('status1');
     const status2 = document.getElementById('status2');
     
+    // Game over message
+    const gameOverMessage = document.getElementById('gameOverMessage');
+    
     // Menu button elements
     const menuButton = document.getElementById('menuButton');
     const confirmDialog = document.getElementById('confirmDialog');
@@ -118,8 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset status displays
         status1.textContent = '';
         status2.textContent = '';
-        status1.classList.remove('status-win', 'status-lose');
-        status2.classList.remove('status-win', 'status-lose');
+        
+        // Reset game over message
+        gameOverMessage.classList.remove('player1-won', 'player2-won');
+        gameOverMessage.classList.add('hidden');
         
         // Enable player buttons
         player1Button.classList.remove('disabled');
@@ -159,23 +164,17 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.isGameOver = true;
         stopTimer();
         
-        // Clear previous status classes
-        status1.classList.remove('status-win', 'status-lose');
-        status2.classList.remove('status-win', 'status-lose');
+        // Add game over effect to darken everything
+        gameScreen.classList.add('game-over');
         
-        // Update status displays with clear winner/loser text and classes
+        // Display game over message with the appropriate winner
+        gameOverMessage.classList.remove('hidden');
         if (winnerPlayer === 1) {
-            status1.textContent = 'You won!';
-            status1.classList.add('status-win');
-            
-            status2.textContent = 'You lost!';
-            status2.classList.add('status-lose');
+            gameOverMessage.classList.add('player1-won');
+            gameOverMessage.classList.remove('player2-won');
         } else {
-            status1.textContent = 'You lost!';
-            status1.classList.add('status-lose');
-            
-            status2.textContent = 'You won!';
-            status2.classList.add('status-win');
+            gameOverMessage.classList.add('player2-won');
+            gameOverMessage.classList.remove('player1-won');
         }
         
         // Disable player buttons
@@ -192,9 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         resetButton.style.top = '50%';
         resetButton.style.left = '50%';
         resetButton.style.transform = 'translate(-50%, -50%)';
-        
-        // Add game over effect to darken everything except the status text
-        gameScreen.classList.add('game-over');
     }
     
     // Return to main menu
@@ -209,9 +205,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove game over effect if present
         gameScreen.classList.remove('game-over');
         
-        // Reset status classes
-        status1.classList.remove('status-win', 'status-lose');
-        status2.classList.remove('status-win', 'status-lose');
+        // Hide game over message
+        gameOverMessage.classList.remove('player1-won', 'player2-won');
+        gameOverMessage.classList.add('hidden');
         
         // Switch screens
         gameScreen.classList.remove('active');
