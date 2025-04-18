@@ -193,7 +193,8 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .category-container {
@@ -743,16 +744,45 @@ h1 {
         height: auto;
         overflow-y: auto;
     }
+    
+    .game-screen {
+        position: absolute;
+        min-height: 100%;
+        overflow-y: auto;
+    }
 
     #app {
         justify-content: flex-start;
         height: auto;
         padding: 15px;
-        padding-bottom: 30px;
+        padding-bottom: 50px;
     }
     
     .screen.active {
-        padding-bottom: 30px;
+        padding-bottom: 50px;
+    }
+    
+    .timer-container, .timer-container3p {
+        min-height: 85vh;
+        height: auto;
+    }
+    
+    .reset-button {
+        position: fixed;
+        bottom: 20px;
+    }
+    
+    .main-menu-button {
+        position: fixed;
+    }
+    
+    .player-result, .player-result3p {
+        position: fixed;
+        z-index: 25;
+    }
+    
+    .placement-display {
+        z-index: 25;
     }
     
     h1 {
@@ -833,5 +863,21 @@ h1 {
         padding: 8px 14px;
         font-size: 0.9rem;
         flex-grow: 1;
+    }
+}
+
+/* Additional mobile adjustments for very small screens */
+@media (max-height: 600px) {
+    .timer-container, .timer-container3p {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    
+    .player-button {
+        height: 60px;
+    }
+    
+    .time-display {
+        font-size: 2.3rem;
     }
 } 

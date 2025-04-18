@@ -353,6 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameState3p.eliminatedPlayers.length === 1) {
             // First player eliminated (3rd place)
             placementDisplay.textContent = '3rd PLACE';
+            placementDisplay.style.color = 'var(--bronze-color)';
+            placementDisplay.style.textShadow = '0 0 20px rgba(205, 97, 51, 0.6)';
             
             // Switch active player to one of the remaining players
             const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
@@ -362,6 +364,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (gameState3p.eliminatedPlayers.length === 2) {
             // Second player eliminated (2nd place)
             placementDisplay.textContent = '2nd PLACE';
+            placementDisplay.style.color = 'var(--silver-color)';
+            placementDisplay.style.textShadow = '0 0 20px rgba(178, 190, 195, 0.6)';
             
             // Last player wins (1st place)
             const winner = [1, 2, 3].find(p => !gameState3p.eliminatedPlayers.includes(p));
@@ -383,6 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show 1st place message
         const winnerPlacementDisplay = document.getElementById(`placement${winnerPlayer}_3p`);
         winnerPlacementDisplay.textContent = '1st PLACE';
+        winnerPlacementDisplay.style.color = 'var(--gold-color)';
+        winnerPlacementDisplay.style.textShadow = '0 0 20px rgba(255, 195, 18, 0.6)';
         
         // Hide the menu button
         menuButton3p.style.display = 'none';
