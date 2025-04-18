@@ -339,9 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add to placement order (3rd place first, then 2nd)
         gameState3p.placementOrder.push(playerNumber);
         
-        // Disable the player's button
-        const playerButton = document.getElementById(`button${playerNumber}_3p`);
-        playerButton.classList.add('disabled');
+        // Get the player's section element
+        const playerSection = document.getElementById(`player${playerNumber}_3p`);
+        playerSection.classList.add('player-eliminated');
         
         // Show placement message
         const placementElement = document.getElementById(`gameOverPlayer${playerNumber}_3p`);
@@ -352,9 +352,13 @@ document.addEventListener('DOMContentLoaded', () => {
             placementElement.classList.add('third-place');
             placementElement.classList.remove('hidden');
             
-            // Switch active player to one of the remaining players
-            const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
-            gameState3p.activePlayer = remainingPlayers[0];
+            // Switch active player to one of the remaining players if current active player was eliminated
+            if (gameState3p.activePlayer === playerNumber) {
+                const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
+                gameState3p.activePlayer = remainingPlayers[0];
+            }
+            
+            // Update UI for remaining players
             updateTurnIndicators();
             
         } else if (gameState3p.eliminatedPlayers.length === 2) {
@@ -374,8 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState3p.isGameOver = true;
         stopTimer();
         
-        // Add game over effect
-        gameScreen3p.classList.add('game-over');
+        // Get the player's section element
+        const playerSection = document.getElementById(`player${winnerPlayer}_3p`);
+        playerSection.classList.add('player-eliminated');
         
         // Show 1st place message for winner
         const winnerElement = document.getElementById(`gameOverPlayer${winnerPlayer}_3p`);

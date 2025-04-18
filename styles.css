@@ -504,11 +504,32 @@ h1 {
     justify-content: center;
     align-items: center;
     transition: all 0.5s ease;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
     background-color: rgba(0, 0, 0, 0.85);
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+}
+
+/* Specific positions for each player's results */
+#gameOverPlayer1_3p {
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+}
+
+#gameOverPlayer2_3p {
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+}
+
+#gameOverPlayer3_3p {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
 }
 
 .player-result3p.first-place {
@@ -524,6 +545,17 @@ h1 {
 .player-result3p.third-place {
     color: var(--bronze-color);
     text-shadow: 0 0 20px rgba(205, 97, 51, 0.6);
+}
+
+/* This class will be added to eliminated players */
+.player-eliminated .time-display,
+.player-eliminated .player-button,
+.player-eliminated .turn-indicator {
+    display: none;
+}
+
+.player-eliminated {
+    position: relative;
 }
 
 /* Confirmation Dialog */
@@ -759,4 +791,81 @@ h1 {
         font-size: 0.9rem;
         flex-grow: 1;
     }
+}
+
+/* Game over styles for 3-player mode */
+#gameOverPlayer1_3p, #gameOverPlayer2_3p, #gameOverPlayer3_3p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.player-eliminated button {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.player-eliminated .timer {
+    opacity: 0.5;
+}
+
+.first-place {
+    color: gold;
+}
+
+.second-place {
+    color: silver;
+}
+
+.third-place {
+    color: #cd7f32; /* bronze */
+}
+
+/* 3-player mode styles */
+#gameScreen3p {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.player-section-3p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    border: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Highlight active player */
+.player-section-3p.active-player {
+    background-color: rgba(0, 255, 0, 0.05);
+    border-color: rgba(0, 255, 0, 0.5);
+}
+
+/* Style for players who can press button next */
+.player-section-3p.can-press-next {
+    background-color: rgba(255, 255, 0, 0.05);
+    border-color: rgba(255, 255, 0, 0.3);
+}
+
+.player-section-3p button {
+    width: 80%;
+    padding: 20px;
+    margin: 10px 0;
+    font-size: 24px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 } 
