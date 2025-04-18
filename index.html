@@ -47,7 +47,9 @@
                     <div id="status1" class="status-display"></div>
                 </div>
                 
-                <div class="divider"></div>
+                <div class="divider">
+                    <button id="menuButton" class="menu-button">Menu</button>
+                </div>
                 
                 <div id="player2" class="player-section rotated">
                     <div class="time-display">
@@ -61,6 +63,17 @@
             </div>
             
             <button id="resetButton" class="reset-button hidden">Reset Game</button>
+            
+            <!-- Confirmation Dialog -->
+            <div id="confirmDialog" class="dialog hidden">
+                <div class="dialog-content">
+                    <p>Are you sure you want to return to the menu?</p>
+                    <div class="dialog-buttons">
+                        <button id="cancelButton">Cancel</button>
+                        <button id="confirmButton">Yes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

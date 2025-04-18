@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const status1 = document.getElementById('status1');
     const status2 = document.getElementById('status2');
     
+    // Menu button elements
+    const menuButton = document.getElementById('menuButton');
+    const confirmDialog = document.getElementById('confirmDialog');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    
     // Game State
     let gameSettings = {
         mode: 'timer',
@@ -161,6 +167,44 @@ document.addEventListener('DOMContentLoaded', () => {
         resetButton.classList.remove('hidden');
     }
     
+    // Return to main menu
+    function returnToMenu() {
+        // Stop the game timer
+        stopTimer();
+        
+        // Reset game state and UI
+        gameState.isGameStarted = false;
+        gameState.isGameOver = false;
+        
+        // Switch screens
+        gameScreen.classList.remove('active');
+        startMenu.classList.add('active');
+    }
+    
+    // Show confirmation dialog
+    function showConfirmDialog() {
+        // Pause the game timer
+        if (gameState.isGameStarted && !gameState.isGameOver) {
+            stopTimer();
+        }
+        
+        // Show the dialog
+        confirmDialog.classList.remove('hidden');
+    }
+    
+    // Hide confirmation dialog
+    function hideConfirmDialog(shouldReturnToMenu) {
+        // Hide the dialog
+        confirmDialog.classList.add('hidden');
+        
+        if (shouldReturnToMenu) {
+            returnToMenu();
+        } else if (gameState.isGameStarted && !gameState.isGameOver) {
+            // Resume the game timer
+            startTimer();
+        }
+    }
+    
     // Event Listeners
     
     // Mode Selection
@@ -219,6 +263,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset Button
     resetButton.addEventListener('click', () => {
         initGame();
+    });
+    
+    // Menu Button
+    menuButton.addEventListener('click', () => {
+        showConfirmDialog();
+    });
+    
+    // Confirmation Dialog Buttons
+    confirmButton.addEventListener('click', () => {
+        hideConfirmDialog(true); // true = return to menu
+    });
+    
+    cancelButton.addEventListener('click', () => {
+        hideConfirmDialog(false); // false = stay in game
     });
     
     // Initialize
