@@ -425,7 +425,8 @@ h1 {
     position: relative;
 }
 
-.reset-button {
+/* Reset button and Main Menu button */
+.reset-button, .main-menu-button {
     background-color: var(--purple-primary);
     color: var(--text-color);
     border: none;
@@ -438,18 +439,40 @@ h1 {
     z-index: 20;
     box-shadow: 0 0 15px rgba(108, 92, 231, 0.7);
     position: absolute;
+}
+
+.reset-button {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.reset-button:hover {
+.main-menu-button {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    padding: 12px 28px;
+}
+
+.reset-button:hover, .main-menu-button:hover {
     background-color: var(--purple-secondary);
+}
+
+.reset-button:hover {
     transform: translateX(-50%) scale(1.05);
 }
 
 .reset-button:active {
     transform: translateX(-50%) scale(0.95);
+}
+
+.main-menu-button:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.main-menu-button:active {
+    transform: translate(-50%, -50%) scale(0.95);
 }
 
 /* Game Over State */

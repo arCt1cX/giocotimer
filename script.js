@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements - 2 Player Mode
     const gameScreen2p = document.getElementById('gameScreen2p');
     const resetButton2p = document.getElementById('resetButton2p');
+    const mainMenuButton2p = document.getElementById('mainMenuButton2p');
     const categoryDisplay2p = document.getElementById('categoryDisplay2p');
     const categoryText2p = document.getElementById('category2p');
     
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements - 3 Player Mode
     const gameScreen3p = document.getElementById('gameScreen3p');
     const resetButton3p = document.getElementById('resetButton3p');
+    const mainMenuButton3p = document.getElementById('mainMenuButton3p');
     const categoryDisplay3p = document.getElementById('categoryDisplay3p');
     const categoryText3p = document.getElementById('category3p');
     
@@ -385,8 +387,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide the menu button
         menuButton3p.style.display = 'none';
         
-        // Show reset button
+        // Show reset button and main menu button
         resetButton3p.classList.remove('hidden');
+        mainMenuButton3p.classList.remove('hidden');
     }
     
     // Game start/end functions
@@ -435,6 +438,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 categoryDisplay2p.classList.add('hidden');
             }
+            
+            // Hide main menu button
+            mainMenuButton2p.classList.add('hidden');
         } else {
             // 3-Player mode initialization
             // Initialize game state
@@ -494,6 +500,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 categoryDisplay3p.classList.add('hidden');
             }
+            
+            // Hide main menu button
+            mainMenuButton3p.classList.add('hidden');
         }
     }
     
@@ -575,8 +584,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide menu button
         menuButton2p.style.display = 'none';
         
-        // Show reset button
+        // Show reset button and main menu button
         resetButton2p.classList.remove('hidden');
+        mainMenuButton2p.classList.remove('hidden');
     }
     
     // Switch active player
@@ -816,6 +826,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     cancelButton.addEventListener('click', () => {
         hideConfirmDialog(false); // false = stay in game
+    });
+    
+    // Main Menu Buttons
+    mainMenuButton2p.addEventListener('click', () => {
+        returnToMenu();
+    });
+    
+    mainMenuButton3p.addEventListener('click', () => {
+        returnToMenu();
     });
     
     // Initialize
