@@ -1311,6 +1311,58 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Player Buttons - 4 Player
     player1Button4p.addEventListener('click', () => {
-    // Initialize
-    loadCategories();
+        if (gameState4p.isGameOver || gameState4p.eliminatedPlayers.includes(1)) return;
+        
+        if (!gameState4p.isGameStarted) {
+            // Start the game with player 1 as active (their timer will increase)
+            startGame(1);
+        } else if (gameState4p.activePlayer !== 1) {
+            // Only allow player 1 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState4p.activePlayer = 1;
+            updateTurnIndicators();
+        }
+    });
+    
+    player2Button4p.addEventListener('click', () => {
+        if (gameState4p.isGameOver || gameState4p.eliminatedPlayers.includes(2)) return;
+        
+        if (!gameState4p.isGameStarted) {
+            // Start the game with player 2 as active (their timer will increase)
+            startGame(2);
+        } else if (gameState4p.activePlayer !== 2) {
+            // Only allow player 2 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState4p.activePlayer = 2;
+            updateTurnIndicators();
+        }
+    });
+    
+    player3Button4p.addEventListener('click', () => {
+        if (gameState4p.isGameOver || gameState4p.eliminatedPlayers.includes(3)) return;
+        
+        if (!gameState4p.isGameStarted) {
+            // Start the game with player 3 as active (their timer will increase)
+            startGame(3);
+        } else if (gameState4p.activePlayer !== 3) {
+            // Only allow player 3 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState4p.activePlayer = 3;
+            updateTurnIndicators();
+        }
+    });
+    
+    player4Button4p.addEventListener('click', () => {
+        if (gameState4p.isGameOver || gameState4p.eliminatedPlayers.includes(4)) return;
+        
+        if (!gameState4p.isGameStarted) {
+            // Start the game with player 4 as active (their timer will increase)
+            startGame(4);
+        } else if (gameState4p.activePlayer !== 4) {
+            // Only allow player 4 to press if they're NOT the active player
+            // (i.e., their timer is currently decreasing)
+            gameState4p.activePlayer = 4;
+            updateTurnIndicators();
+        }
+    });
 }); 
