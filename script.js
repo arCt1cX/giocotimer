@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (gameState3p.eliminatedPlayers.length === 1) {
             // First player eliminated (3rd place)
-            placementDisplay.textContent = '3rd PLACE';
+            placementDisplay.textContent = '3° POSTO';
             placementDisplay.style.color = 'var(--bronze-color)';
             placementDisplay.style.textShadow = '0 0 20px rgba(205, 97, 51, 0.6)';
             
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } else if (gameState3p.eliminatedPlayers.length === 2) {
             // Second player eliminated (2nd place)
-            placementDisplay.textContent = '2nd PLACE';
+            placementDisplay.textContent = '2° POSTO';
             placementDisplay.style.color = 'var(--silver-color)';
             placementDisplay.style.textShadow = '0 0 20px rgba(178, 190, 195, 0.6)';
             
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show 1st place message
         const winnerPlacementDisplay = document.getElementById(`placement${winnerPlayer}_3p`);
-        winnerPlacementDisplay.textContent = '1st PLACE';
+        winnerPlacementDisplay.textContent = '1° POSTO';
         winnerPlacementDisplay.style.color = 'var(--gold-color)';
         winnerPlacementDisplay.style.textShadow = '0 0 20px rgba(255, 195, 18, 0.6)';
         
@@ -422,8 +422,8 @@ document.addEventListener('DOMContentLoaded', () => {
             gameOverPlayer1.classList.remove('loser');
             gameOverPlayer2.classList.add('hidden');
             gameOverPlayer2.classList.remove('loser');
-            gameOverPlayer1.textContent = 'YOU WON!';
-            gameOverPlayer2.textContent = 'YOU WON!';
+            gameOverPlayer1.textContent = 'HAI VINTO!';
+            gameOverPlayer2.textContent = 'HAI VINTO!';
             
             // Enable player buttons
             player1Button.classList.remove('disabled');
@@ -474,9 +474,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('player3_3p').classList.remove('eliminated');
             
             // Reset placement displays
-            document.getElementById('placement1_3p').textContent = '1st PLACE';
-            document.getElementById('placement2_3p').textContent = '2nd PLACE';
-            document.getElementById('placement3_3p').textContent = '3rd PLACE';
+            document.getElementById('placement1_3p').textContent = '1° POSTO';
+            document.getElementById('placement2_3p').textContent = '2° POSTO';
+            document.getElementById('placement3_3p').textContent = '3° POSTO';
             
             // Reset game over messages
             gameOverPlayer1_3p.classList.add('hidden');
@@ -565,20 +565,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show appropriate game over messages
         if (winnerPlayer === 1) {
             // Player 1 won
-            gameOverPlayer1.textContent = 'YOU WON!';
+            gameOverPlayer1.textContent = 'HAI VINTO!';
             gameOverPlayer1.classList.remove('loser');
             gameOverPlayer1.classList.remove('hidden');
             
-            gameOverPlayer2.textContent = 'YOU LOST!';
+            gameOverPlayer2.textContent = 'HAI PERSO!';
             gameOverPlayer2.classList.add('loser');
             gameOverPlayer2.classList.remove('hidden');
         } else {
             // Player 2 won
-            gameOverPlayer1.textContent = 'YOU LOST!';
+            gameOverPlayer1.textContent = 'HAI PERSO!';
             gameOverPlayer1.classList.add('loser');
             gameOverPlayer1.classList.remove('hidden');
             
-            gameOverPlayer2.textContent = 'YOU WON!';
+            gameOverPlayer2.textContent = 'HAI VINTO!';
             gameOverPlayer2.classList.remove('loser');
             gameOverPlayer2.classList.remove('hidden');
         }

@@ -370,10 +370,6 @@ h1 {
     color: var(--active-green);
     opacity: 0;
     transition: opacity 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 3px 10px;
-    border-radius: 15px;
-    z-index: 20;
 }
 
 /* Custom turn indicators for 3-player mode */
@@ -883,23 +879,5 @@ h1 {
     
     .time-display {
         font-size: 2.3rem;
-    }
-}
-
-/* Samsung and other Android device optimizations */
-@media screen and (max-width: 400px) {
-    .turn-indicator {
-        top: -35px;
-        font-size: 0.9rem;
-    }
-    
-    /* Add more space between time display and button container */
-    .player-section, .player-section3p {
-        gap: 30px;
-    }
-    
-    /* Add some margin to time display to prevent overlap */
-    .time-display {
-        margin-bottom: 10px;
     }
 } 

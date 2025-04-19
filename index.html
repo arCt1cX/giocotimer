@@ -1,81 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Gioco Timer</title>
+    <title>Wordrace</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="app">
         <!-- Start Menu -->
         <div id="startMenu" class="screen active">
-            <h1>Gioco Timer</h1>
+            <h1>Wordrace</h1>
             
             <div class="game-instructions">
-                <h2>How to Play</h2>
-                <p>A fast-paced verbal challenge for players:</p>
+                <h2>Come Giocare</h2>
+                <p>Una sfida verbale veloce per giocatori:</p>
                 
                 <div class="mode-instructions mode-2p">
-                    <h3>2-Player Mode:</h3>
+                    <h3>Modalità 2 Giocatori:</h3>
                     <ul>
-                        <li>Each player has their own timer.</li>
-                        <li>When it's your turn, your timer counts down.</li>
-                        <li>Press your button when you finish your turn to switch to the next player.</li>
-                        <li>The game ends when a player's timer reaches zero.</li>
+                        <li>Ogni giocatore ha il proprio timer.</li>
+                        <li>Quando è il tuo turno, il tuo timer diminuisce.</li>
+                        <li>Premi il pulsante quando finisci il turno per passare al giocatore successivo.</li>
+                        <li>Il gioco termina quando il timer di un giocatore raggiunge zero.</li>
                     </ul>
                 </div>
                 
                 <div class="mode-instructions mode-3p">
-                    <h3>3-Player Mode:</h3>
+                    <h3>Modalità 3 Giocatori:</h3>
                     <ul>
-                        <li>When a player presses their button:</li>
-                        <li>- Their timer starts increasing (gaining time)</li>
-                        <li>- The other two players' timers start decreasing</li>
-                        <li>- Any player with a decreasing timer can press next</li>
-                        <li>Players are eliminated when their timer reaches zero</li>
-                        <li>Last player remaining wins!</li>
+                        <li>Quando un giocatore preme il pulsante:</li>
+                        <li>- Il suo timer inizia ad aumentare (guadagnando tempo)</li>
+                        <li>- I timer degli altri due giocatori iniziano a diminuire</li>
+                        <li>- Qualsiasi giocatore con un timer in diminuzione può premere per il prossimo turno</li>
+                        <li>I giocatori vengono eliminati quando il loro timer raggiunge zero</li>
+                        <li>L'ultimo giocatore rimasto vince!</li>
                     </ul>
                 </div>
                 
                 <div class="tip">
-                    Pro tip: Tap your button when you say a word to gain time or switch turns!
+                    Consiglio: Premi il pulsante quando dici una parola per guadagnare tempo o cambiare turno!
                 </div>
             </div>
             
             <div class="menu-option">
-                <h2>Player Mode</h2>
+                <h2>Modalità Giocatori</h2>
                 <div class="option-buttons">
-                    <button data-players="2" class="selected">2 Players</button>
-                    <button data-players="3">3 Players</button>
+                    <button data-players="2" class="selected">2 Giocatori</button>
+                    <button data-players="3">3 Giocatori</button>
                 </div>
             </div>
             
             <div class="menu-option">
-                <h2>Game Mode</h2>
+                <h2>Modalità Gioco</h2>
                 <div class="option-buttons">
-                    <button data-mode="timer" class="selected">Just Timer</button>
-                    <button data-mode="category">With Categories</button>
+                    <button data-mode="timer" class="selected">Solo Timer</button>
+                    <button data-mode="category">Con Categorie</button>
                 </div>
             </div>
             
             <div class="menu-option">
-                <h2>Initial Time</h2>
+                <h2>Tempo Iniziale</h2>
                 <div class="option-buttons">
-                    <button data-time="30">30 Seconds</button>
-                    <button data-time="60" class="selected">1 Minute</button>
-                    <button data-time="120">2 Minutes</button>
-                    <button data-time="300">5 Minutes</button>
+                    <button data-time="30">30 Secondi</button>
+                    <button data-time="60" class="selected">1 Minuto</button>
+                    <button data-time="120">2 Minuti</button>
+                    <button data-time="300">5 Minuti</button>
                 </div>
             </div>
             
-            <button id="startButton" class="start-button">Start Game</button>
+            <button id="startButton" class="start-button">Inizia Gioco</button>
         </div>
 
         <!-- Game Screen - 2 Players -->
         <div id="gameScreen2p" class="game-screen screen">
             <div id="categoryDisplay2p" class="category-container hidden">
-                <h2>Category:</h2>
+                <h2>Categoria:</h2>
                 <p id="category2p"></p>
             </div>
             
@@ -85,8 +85,8 @@
                         <span id="time1">01:00</span>
                     </div>
                     <div class="button-container">
-                        <div id="indicator1" class="turn-indicator">YOUR TURN</div>
-                        <button id="button1" class="player-button">Press</button>
+                        <div id="indicator1" class="turn-indicator">IL TUO TURNO</div>
+                        <button id="button1" class="player-button">Premi</button>
                     </div>
                     <div id="status1" class="status-display"></div>
                 </div>
@@ -100,25 +100,25 @@
                         <span id="time2">01:00</span>
                     </div>
                     <div class="button-container">
-                        <div id="indicator2" class="turn-indicator">YOUR TURN</div>
-                        <button id="button2" class="player-button">Press</button>
+                        <div id="indicator2" class="turn-indicator">IL TUO TURNO</div>
+                        <button id="button2" class="player-button">Premi</button>
                     </div>
                     <div id="status2" class="status-display"></div>
                 </div>
             </div>
             
-            <button id="resetButton2p" class="reset-button hidden">Reset Game</button>
-            <button id="mainMenuButton2p" class="main-menu-button hidden">Main Menu</button>
+            <button id="resetButton2p" class="reset-button hidden">Ricomincia</button>
+            <button id="mainMenuButton2p" class="main-menu-button hidden">Menu Principale</button>
             
             <!-- Game Over Overlays - One for each player -->
-            <div id="gameOverPlayer1" class="player-result hidden">YOU WON!</div>
-            <div id="gameOverPlayer2" class="player-result rotated hidden">YOU WON!</div>
+            <div id="gameOverPlayer1" class="player-result hidden">HAI VINTO!</div>
+            <div id="gameOverPlayer2" class="player-result rotated hidden">HAI VINTO!</div>
         </div>
 
         <!-- Game Screen - 3 Players -->
         <div id="gameScreen3p" class="game-screen screen">
             <div id="categoryDisplay3p" class="category-container hidden">
-                <h2>Category:</h2>
+                <h2>Categoria:</h2>
                 <p id="category3p"></p>
             </div>
             
@@ -129,11 +129,11 @@
                         <span id="time1_3p">01:00</span>
                     </div>
                     <div class="button-container">
-                        <div id="indicator1_3p" class="turn-indicator">PRESS NOW</div>
-                        <button id="button1_3p" class="player-button">Press</button>
+                        <div id="indicator1_3p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button1_3p" class="player-button">Premi</button>
                     </div>
                     <div id="status1_3p" class="status-display"></div>
-                    <div id="placement1_3p" class="placement-display">1st PLACE</div>
+                    <div id="placement1_3p" class="placement-display">1° POSTO</div>
                 </div>
                 
                 <!-- Player 2 - Right -->
@@ -142,11 +142,11 @@
                         <span id="time2_3p">01:00</span>
                     </div>
                     <div class="button-container">
-                        <div id="indicator2_3p" class="turn-indicator">PRESS NOW</div>
-                        <button id="button2_3p" class="player-button">Press</button>
+                        <div id="indicator2_3p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button2_3p" class="player-button">Premi</button>
                     </div>
                     <div id="status2_3p" class="status-display"></div>
-                    <div id="placement2_3p" class="placement-display">2nd PLACE</div>
+                    <div id="placement2_3p" class="placement-display">2° POSTO</div>
                 </div>
                 
                 <!-- Player 3 - Bottom -->
@@ -155,11 +155,11 @@
                         <span id="time3_3p">01:00</span>
                     </div>
                     <div class="button-container">
-                        <div id="indicator3_3p" class="turn-indicator">PRESS NOW</div>
-                        <button id="button3_3p" class="player-button">Press</button>
+                        <div id="indicator3_3p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button3_3p" class="player-button">Premi</button>
                     </div>
                     <div id="status3_3p" class="status-display"></div>
-                    <div id="placement3_3p" class="placement-display">3rd PLACE</div>
+                    <div id="placement3_3p" class="placement-display">3° POSTO</div>
                 </div>
                 
                 <!-- Center menu button -->
@@ -168,22 +168,22 @@
                 </div>
             </div>
             
-            <button id="resetButton3p" class="reset-button hidden">Reset Game</button>
-            <button id="mainMenuButton3p" class="main-menu-button hidden">Main Menu</button>
+            <button id="resetButton3p" class="reset-button hidden">Ricomincia</button>
+            <button id="mainMenuButton3p" class="main-menu-button hidden">Menu Principale</button>
             
             <!-- Game Over Overlays - One for each player in 3p mode -->
-            <div id="gameOverPlayer1_3p" class="player-result3p player-left hidden">1st PLACE</div>
-            <div id="gameOverPlayer2_3p" class="player-result3p player-right hidden">2nd PLACE</div>
-            <div id="gameOverPlayer3_3p" class="player-result3p player-bottom hidden">3rd PLACE</div>
+            <div id="gameOverPlayer1_3p" class="player-result3p player-left hidden">1° POSTO</div>
+            <div id="gameOverPlayer2_3p" class="player-result3p player-right hidden">2° POSTO</div>
+            <div id="gameOverPlayer3_3p" class="player-result3p player-bottom hidden">3° POSTO</div>
         </div>
         
         <!-- Confirmation Dialog -->
         <div id="confirmDialog" class="dialog hidden">
             <div class="dialog-content">
-                <p>Are you sure you want to return to the menu?</p>
+                <p>Sei sicuro di voler tornare al menu?</p>
                 <div class="dialog-buttons">
-                    <button id="cancelButton">Cancel</button>
-                    <button id="confirmButton">Yes</button>
+                    <button id="cancelButton">Annulla</button>
+                    <button id="confirmButton">Sì</button>
                 </div>
             </div>
         </div>
