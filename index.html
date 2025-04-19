@@ -17,6 +17,7 @@
                 <div class="option-buttons">
                     <button data-players="2" class="selected">2 Giocatori</button>
                     <button data-players="3">3 Giocatori</button>
+                    <button data-players="4">4 Giocatori</button>
                 </div>
             </div>
             
@@ -175,6 +176,82 @@
             <div id="gameOverPlayer1_3p" class="player-result3p player-left hidden">1° POSTO</div>
             <div id="gameOverPlayer2_3p" class="player-result3p player-right hidden">2° POSTO</div>
             <div id="gameOverPlayer3_3p" class="player-result3p player-bottom hidden">3° POSTO</div>
+        </div>
+        
+        <!-- Game Screen - 4 Players -->
+        <div id="gameScreen4p" class="game-screen screen">
+            <div id="categoryDisplay4p" class="category-container hidden">
+                <h2>Categoria:</h2>
+                <p id="category4p"></p>
+            </div>
+            
+            <div class="timer-container4p">
+                <!-- Player 1 - Top Left -->
+                <div id="player1_4p" class="player-section4p player-top-left">
+                    <div class="time-display">
+                        <span id="time1_4p">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <div id="indicator1_4p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button1_4p" class="player-button">Premi</button>
+                    </div>
+                    <div id="status1_4p" class="status-display"></div>
+                    <div id="placement1_4p" class="placement-display">1° POSTO</div>
+                </div>
+                
+                <!-- Player 2 - Top Right -->
+                <div id="player2_4p" class="player-section4p player-top-right">
+                    <div class="time-display">
+                        <span id="time2_4p">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <div id="indicator2_4p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button2_4p" class="player-button">Premi</button>
+                    </div>
+                    <div id="status2_4p" class="status-display"></div>
+                    <div id="placement2_4p" class="placement-display">2° POSTO</div>
+                </div>
+                
+                <!-- Player 3 - Bottom Left -->
+                <div id="player3_4p" class="player-section4p player-bottom-left">
+                    <div class="time-display">
+                        <span id="time3_4p">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <div id="indicator3_4p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button3_4p" class="player-button">Premi</button>
+                    </div>
+                    <div id="status3_4p" class="status-display"></div>
+                    <div id="placement3_4p" class="placement-display">3° POSTO</div>
+                </div>
+                
+                <!-- Player 4 - Bottom Right -->
+                <div id="player4_4p" class="player-section4p player-bottom-right">
+                    <div class="time-display">
+                        <span id="time4_4p">01:00</span>
+                    </div>
+                    <div class="button-container">
+                        <div id="indicator4_4p" class="turn-indicator">PREMI ORA</div>
+                        <button id="button4_4p" class="player-button">Premi</button>
+                    </div>
+                    <div id="status4_4p" class="status-display"></div>
+                    <div id="placement4_4p" class="placement-display">4° POSTO</div>
+                </div>
+                
+                <!-- Center menu button -->
+                <div class="center-controls">
+                    <button id="menuButton4p" class="menu-button">Menu</button>
+                </div>
+            </div>
+            
+            <button id="resetButton4p" class="reset-button hidden">Ricomincia</button>
+            <button id="mainMenuButton4p" class="main-menu-button hidden">Menu Principale</button>
+            
+            <!-- Game Over Overlays - One for each player in 4p mode -->
+            <div id="gameOverPlayer1_4p" class="player-result4p player-top-left hidden">1° POSTO</div>
+            <div id="gameOverPlayer2_4p" class="player-result4p player-top-right hidden">2° POSTO</div>
+            <div id="gameOverPlayer3_4p" class="player-result4p player-bottom-left hidden">3° POSTO</div>
+            <div id="gameOverPlayer4_4p" class="player-result4p player-bottom-right hidden">4° POSTO</div>
         </div>
         
         <!-- Confirmation Dialog -->

@@ -18,6 +18,7 @@
     --gold-color: #FFC312;
     --silver-color: #B2BEC3;
     --bronze-color: #CD6133;
+    --pewter-color: #718093;
 }
 
 html, body {
@@ -370,39 +371,11 @@ h1 {
     color: var(--active-green);
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 20;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 3px 8px;
-    border-radius: 10px;
-    width: auto;
-    max-width: 90%;
 }
 
 /* Custom turn indicators for 3-player mode */
 #indicator1_3p, #indicator2_3p, #indicator3_3p {
-    content: "PREMI ORA";
-}
-
-/* Ensure turn indicators are properly positioned on all devices */
-@media screen and (max-width: 480px) {
-    .turn-indicator {
-        top: -25px;
-        font-size: 0.9rem;
-    }
-    
-    /* Specific fix for Android devices */
-    .button-container {
-        position: relative;
-        margin-top: 15px;
-        padding-top: 10px;
-    }
-    
-    /* Ensure the time display is not overlapped */
-    .time-display {
-        position: relative;
-        z-index: 10;
-        margin-bottom: 15px;
-    }
+    content: "PRESS NOW";
 }
 
 .turn-indicator.visible {
@@ -908,4 +881,119 @@ h1 {
     .time-display {
         font-size: 2.3rem;
     }
+}
+
+/* 4-Player Layout */
+.timer-container4p {
+    display: grid;
+    grid-template-areas: 
+        "topleft topright"
+        "bottomleft bottomright";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    height: 85vh;
+    position: relative;
+}
+
+.player-section4p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    position: relative;
+}
+
+.player-top-left {
+    grid-area: topleft;
+}
+
+.player-top-right {
+    grid-area: topright;
+}
+
+.player-bottom-left {
+    grid-area: bottomleft;
+}
+
+.player-bottom-right {
+    grid-area: bottomright;
+}
+
+/* Color variants for different placements */
+#placement1_3p, #placement1_4p {
+    color: var(--gold-color);
+    text-shadow: 0 0 20px rgba(255, 195, 18, 0.6);
+}
+
+#placement2_3p, #placement2_4p {
+    color: var(--silver-color);
+    text-shadow: 0 0 20px rgba(178, 190, 195, 0.6);
+}
+
+#placement3_3p, #placement3_4p {
+    color: var(--bronze-color);
+    text-shadow: 0 0 20px rgba(205, 97, 51, 0.6);
+}
+
+#placement4_4p {
+    color: var(--pewter-color);
+    text-shadow: 0 0 20px rgba(113, 128, 147, 0.6);
+}
+
+/* When a player is eliminated, hide their controls and show placement */
+.player-section3p.eliminated .time-display,
+.player-section3p.eliminated .button-container,
+.player-section3p.eliminated .status-display,
+.player-section4p.eliminated .time-display,
+.player-section4p.eliminated .button-container,
+.player-section4p.eliminated .status-display {
+    visibility: hidden;
+}
+
+.player-section3p.eliminated .placement-display,
+.player-section4p.eliminated .placement-display {
+    display: block;
+}
+
+/* Ensure player sections have relative positioning for absolute placement */
+.player-section3p,
+.player-section4p {
+    position: relative;
+}
+
+/* Game Over Messages - 4 Player */
+.player-result4p {
+    position: absolute;
+    font-size: 3.5rem;
+    font-weight: bold;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Mobile adjustments */
+@media (max-height: 700px) {
+    /* ... existing code ... */
+    .timer-container, .timer-container3p, .timer-container4p {
+        min-height: 85vh;
+        height: auto;
+    }
+    /* ... existing code ... */
+}
+
+@media (max-width: 400px) {
+    /* ... existing code ... */
+    .player-result4p {
+        font-size: 2.5rem;
+    }
+    /* ... existing code ... */
 } 
