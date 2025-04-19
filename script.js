@@ -612,9 +612,11 @@ document.addEventListener('DOMContentLoaded', () => {
             placementDisplay.style.color = 'var(--bronze-color)';
             placementDisplay.style.textShadow = '0 0 20px rgba(205, 97, 51, 0.6)';
             
-            // Switch active player to one of the remaining players
-            const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
-            gameState3p.activePlayer = remainingPlayers[0];
+            // Only switch active player if the eliminated player was the active one
+            if (gameState3p.activePlayer === playerNumber) {
+                const remainingPlayers = [1, 2, 3].filter(p => !gameState3p.eliminatedPlayers.includes(p));
+                gameState3p.activePlayer = remainingPlayers[0];
+            }
             updateTurnIndicators();
             
         } else if (gameState3p.eliminatedPlayers.length === 2) {
@@ -677,9 +679,11 @@ document.addEventListener('DOMContentLoaded', () => {
             placementDisplay.style.color = 'var(--pewter-color)';
             placementDisplay.style.textShadow = '0 0 20px rgba(113, 128, 147, 0.6)';
             
-            // Switch active player to one of the remaining players
-            const remainingPlayers = [1, 2, 3, 4].filter(p => !gameState4p.eliminatedPlayers.includes(p));
-            gameState4p.activePlayer = remainingPlayers[0];
+            // Only switch active player if the eliminated player was the active one
+            if (gameState4p.activePlayer === playerNumber) {
+                const remainingPlayers = [1, 2, 3, 4].filter(p => !gameState4p.eliminatedPlayers.includes(p));
+                gameState4p.activePlayer = remainingPlayers[0];
+            }
             updateTurnIndicators();
             
         } else if (gameState4p.eliminatedPlayers.length === 2) {
@@ -688,9 +692,11 @@ document.addEventListener('DOMContentLoaded', () => {
             placementDisplay.style.color = 'var(--bronze-color)';
             placementDisplay.style.textShadow = '0 0 20px rgba(205, 97, 51, 0.6)';
             
-            // Switch active player to one of the remaining players
-            const remainingPlayers = [1, 2, 3, 4].filter(p => !gameState4p.eliminatedPlayers.includes(p));
-            gameState4p.activePlayer = remainingPlayers[0];
+            // Only switch active player if the eliminated player was the active one
+            if (gameState4p.activePlayer === playerNumber) {
+                const remainingPlayers = [1, 2, 3, 4].filter(p => !gameState4p.eliminatedPlayers.includes(p));
+                gameState4p.activePlayer = remainingPlayers[0];
+            }
             updateTurnIndicators();
             
         } else if (gameState4p.eliminatedPlayers.length === 3) {
