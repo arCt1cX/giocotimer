@@ -12,6 +12,34 @@
         <div id="startMenu" class="screen active">
             <h1>Wordrace</h1>
             
+            <div class="menu-option">
+                <h2>Modalità Giocatori</h2>
+                <div class="option-buttons">
+                    <button data-players="2" class="selected">2 Giocatori</button>
+                    <button data-players="3">3 Giocatori</button>
+                </div>
+            </div>
+            
+            <div class="menu-option">
+                <h2>Modalità Gioco</h2>
+                <div class="option-buttons">
+                    <button data-mode="timer" class="selected">Solo Timer</button>
+                    <button data-mode="category">Con Categorie</button>
+                </div>
+            </div>
+            
+            <div class="menu-option">
+                <h2>Tempo Iniziale</h2>
+                <div class="option-buttons">
+                    <button data-time="30">30 Secondi</button>
+                    <button data-time="60" class="selected">1 Minuto</button>
+                    <button data-time="120">2 Minuti</button>
+                    <button data-time="300">5 Minuti</button>
+                </div>
+            </div>
+            
+            <button id="startButton" class="start-button">Inizia Gioco</button>
+            
             <div class="game-instructions">
                 <h2>Come Giocare</h2>
                 <p>Una sfida verbale veloce per giocatori:</p>
@@ -42,34 +70,6 @@
                     Consiglio: Premi il pulsante quando dici una parola per guadagnare tempo o cambiare turno!
                 </div>
             </div>
-            
-            <div class="menu-option">
-                <h2>Modalità Giocatori</h2>
-                <div class="option-buttons">
-                    <button data-players="2" class="selected">2 Giocatori</button>
-                    <button data-players="3">3 Giocatori</button>
-                </div>
-            </div>
-            
-            <div class="menu-option">
-                <h2>Modalità Gioco</h2>
-                <div class="option-buttons">
-                    <button data-mode="timer" class="selected">Solo Timer</button>
-                    <button data-mode="category">Con Categorie</button>
-                </div>
-            </div>
-            
-            <div class="menu-option">
-                <h2>Tempo Iniziale</h2>
-                <div class="option-buttons">
-                    <button data-time="30">30 Secondi</button>
-                    <button data-time="60" class="selected">1 Minuto</button>
-                    <button data-time="120">2 Minuti</button>
-                    <button data-time="300">5 Minuti</button>
-                </div>
-            </div>
-            
-            <button id="startButton" class="start-button">Inizia Gioco</button>
         </div>
 
         <!-- Game Screen - 2 Players -->
