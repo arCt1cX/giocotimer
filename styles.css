@@ -238,7 +238,16 @@ h1 {
     position: relative;
 }
 
+/* This class rotates the entire player 2 section */
 .rotated {
+    transform: rotate(180deg);
+}
+
+/* Double-rotate text elements inside the rotated player section to make them readable */
+.player-section.rotated .player-button,
+.player-section.rotated .turn-indicator,
+.player-section.rotated .time-display,
+.player-section.rotated .status-display {
     transform: rotate(180deg);
 }
 
