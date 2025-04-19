@@ -370,11 +370,39 @@ h1 {
     color: var(--active-green);
     opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3px 8px;
+    border-radius: 10px;
+    width: auto;
+    max-width: 90%;
 }
 
 /* Custom turn indicators for 3-player mode */
 #indicator1_3p, #indicator2_3p, #indicator3_3p {
-    content: "PRESS NOW";
+    content: "PREMI ORA";
+}
+
+/* Ensure turn indicators are properly positioned on all devices */
+@media screen and (max-width: 480px) {
+    .turn-indicator {
+        top: -25px;
+        font-size: 0.9rem;
+    }
+    
+    /* Specific fix for Android devices */
+    .button-container {
+        position: relative;
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+    
+    /* Ensure the time display is not overlapped */
+    .time-display {
+        position: relative;
+        z-index: 10;
+        margin-bottom: 15px;
+    }
 }
 
 .turn-indicator.visible {
